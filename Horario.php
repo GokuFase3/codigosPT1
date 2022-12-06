@@ -9,8 +9,10 @@
 <?php
 
 if ($_GET){
-	$escolartime = $_GET['fecha'];
-      echo "Personas que coinciden con el horario: " .$_GET["fecha"];
+	$inicio = $_GET['inicio'];
+	$final = $_GET['final'];
+      echo "Personas que coinciden con el horario entre ";
+      echo "".$_GET['inicio']." y ".$_GET['final'];
       echo "<br><br>";
    }else{
       echo "Sin datos";
@@ -33,7 +35,7 @@ if(!($db = mysqli_select_db($conexion, $basededatos))){
 }else{
 	echo "encontre en la base de datos de ".$basededatos."";
 }
-$consulta = "SELECT id, fecha FROM sala1 WHERE fecha = '$escolartime'";
+$consulta = "SELECT id, fecha FROM sala1 WHERE fecha BETWEEN '$inicio' AND '$final'";
 
 if (!($resultado = mysqli_query($conexion, $consulta))){
 	echo "No se ha podido hacer la consulta correctamente <br><br>";
@@ -50,11 +52,15 @@ if (!($resultado = mysqli_query($conexion, $consulta))){
 	<?php
     while($row = mysqli_fetch_array($resultado)){
     	printf("<<tr><<td>%s</td><<td>%s</td></tr>", $row["id"],$row["fecha"]);
+    	if 
     }
     mysqli_free_result($resultado);
     mysqli_close($conexion)
 	?>
 </table>
+
+
+
 
 </body>
 </html>

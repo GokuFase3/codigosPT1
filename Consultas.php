@@ -35,19 +35,13 @@ if (!($resultado = mysqli_query($conexion, $consulta))){
 }
 
 ?>
-<table>
-	<tr>
-		<td>UID</td>
-		<td>Fecha</td>
-	</tr>
 	<?php
+	 echo "la tarjeta " .$card. " estuvo en los siguientes horarios<br><br>";
     while($row = mysqli_fetch_array($resultado)){
-    	printf("<<tr><<td>%s</td><<td>%s</td></tr>", $row["id"],$row["fecha"]);
+    	printf("<tr><td>%s<br></td></tr>", $row["fecha"]);
     }
     mysqli_free_result($resultado);
     mysqli_close($conexion)
 	?>
-</table>
-
 </body>
 </html>
