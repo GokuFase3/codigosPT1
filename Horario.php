@@ -35,13 +35,6 @@ if(!($db = mysqli_select_db($conexion, $basededatos))){
 }else{
 	echo "encontre en la base de datos de ".$basededatos."";
 }
-$consulta = "SELECT id, fecha FROM sala1 WHERE fecha BETWEEN '$inicio' AND '$final'";
-
-if (!($resultado = mysqli_query($conexion, $consulta))){
-	echo "No se ha podido hacer la consulta correctamente <br><br>";
-}else{
-   echo " que las personas en riesgo son: <br><br>";	
-}
 
 ?>
 <table>
@@ -50,14 +43,49 @@ if (!($resultado = mysqli_query($conexion, $consulta))){
 		<td>Fecha</td>
 	</tr>
 	<?php
-    while($row = mysqli_fetch_array($resultado)){
-    	printf("<<tr><<td>%s</td><<td>%s</td></tr>", $row["id"],$row["fecha"]);
-    	if 
-    }
-    mysqli_free_result($resultado);
-    mysqli_close($conexion)
+	$listado = array();
+	$consulta = "SELECT id, fecha FROM sala1 WHERE fecha BETWEEN '$inicio' AND '$final'";
+
+   if (!($resultado = mysqli_query($conexion, $consulta))){
+	echo "No se ha podido hacer la consulta correctamente <br><br>";
+   }else{
+   echo " que las personas en riesgo son: <br><br>";	
+   }
+   while($explorar = mysqli_fetch_array($resultado)){
+   	printf("<tr><td>%s</td><td>%s</td></tr>", $explorar["id"], $explorar["fecha"]);
+   	array_push($listado, $explorar["id"]);
+   }
+    #mysqli_free_result($resultado);
+    #mysqli_close($conexion);
 	?>
 </table>
+<H2>favor de ponerse en contacto con las personas: </H2>
+
+ <?php
+$j = 0;
+$repetidos = array();
+#$repetidos = array_unique($listado);
+$aux = $listado[$j];
+$repetidos[] = $aux;
+$j++;
+for($j; $j < count($listado); $j++){
+    $aux = $listado[$j];
+    if(!in_array($aux, $repetidos)){
+    	$repetidos[] = $aux;
+    }
+}
+$j = 0;
+echo $repetidos[3];
+
+while($j < count($repetidos)){
+$query = "SELECT contacto FROM info WHERE id = '$repetidos[$j]'";
+$correos = mysqli_query($conexion, $query);
+         while($explorar_correos = mysqli_fetch_array($correos)){
+                printf("<tr><td>%s, </td></tr>", $explorar_correos["contacto"]);
+     }
+ $j++;
+}
+?>
 
 
 
