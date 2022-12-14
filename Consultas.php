@@ -26,7 +26,7 @@ if(!($db = mysqli_select_db($conexion, $basededatos))){
 }else{
 	echo " y listo para usar la base de datos: ".$basededatos."<br><br>";
 }
-$consulta = "SELECT id, fecha FROM sala1 WHERE id = '$card'";
+$consulta = "SELECT id, fecha FROM salas WHERE id = '$card'";
 
 if (!($resultado = mysqli_query($conexion, $consulta))){
 	echo "No se ha podido hacer la consulta correctamente <br><br>";

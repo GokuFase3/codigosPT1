@@ -44,7 +44,7 @@ if(!($db = mysqli_select_db($conexion, $basededatos))){
 	</tr>
 	<?php
 	$listado = array();
-	$consulta = "SELECT id, fecha FROM sala1 WHERE fecha BETWEEN '$inicio' AND '$final'";
+	$consulta = "SELECT id, fecha FROM salas WHERE fecha BETWEEN '$inicio' AND '$final'";
 
    if (!($resultado = mysqli_query($conexion, $consulta))){
 	echo "No se ha podido hacer la consulta correctamente <br><br>";
@@ -75,7 +75,6 @@ for($j; $j < count($listado); $j++){
     }
 }
 $j = 0;
-echo $repetidos[3];
 
 while($j < count($repetidos)){
 $query = "SELECT contacto FROM info WHERE id = '$repetidos[$j]'";
