@@ -46,24 +46,20 @@ void loop() {
     Serial.print(mfrc522.uid.uidByte[i],HEX);
     BT1.print(mfrc522.uid.uidByte[i] < 0x10 ? "0" : "");
     BT1.print(mfrc522.uid.uidByte[i], HEX);    //aqui mandamos la UID por serial
-    //aux2 = int(mfrc522.uid.uidByte[i]);
-    ///aux3= String(aux2, HEX);
-    //if (aux2<16){aux3 = "0" + aux3;}
-    //texto+= aux3;
 }
 //Serial.println(texto);
      BT1.println();    //En este bucle leemos lo que el WiFi muestra por serial
      Serial.println();
      delay(10);
-     int valor = 0;
-     String c = "";
-     while(valor==0){
-     c = BT1.readStringUntil('\n');
-     Serial.print(c);
-     Serial.println();
-     delay(10);
-     valor = digitalRead(7);
-     }
-     delay(1000);
-     valor=0;
+     //int valor = 0;
+     //String c = "";
+     //while(valor==0){
+     //c = BT1.readStringUntil('\n');
+     //Serial.print(c);
+     //Serial.println();
+     //delay(10);
+     //valor = digitalRead(7);
+     //}
+     delay(2000);
+     //valor=0;
 }
