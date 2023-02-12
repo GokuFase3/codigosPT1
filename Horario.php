@@ -5,14 +5,17 @@
    <title>ConsultasUID</title>
 </head>
 <body>
-	<H1>Personas en riesgo!</H1>
+	<H1>Ponerse en contacto con: </H1>
 <?php
 
 if ($_GET){
 	$inicio = $_GET['inicio'];
 	$final = $_GET['final'];
+	$NumAula = $_GET['aula'];
       echo "Personas que coinciden con el horario entre ";
       echo "".$_GET['inicio']." y ".$_GET['final'];
+      echo "<br><br>";
+      echo "Y que estuvieron en el aula: ".$_GET['aula'];
       echo "<br><br>";
    }else{
       echo "Sin datos";
@@ -23,7 +26,7 @@ $contrasena = "";
 $servidor = "localhost";
 $basededatos = "aulas";
 $puerto = "80";
-$tabla = "sala1";
+$tabla = "salas";
 
 if(!($conexion = mysqli_connect($servidor, $usuario, ""))){
 	echo "No se ha podido conectar al servidor de la Base de datos <br><br>";
@@ -41,10 +44,11 @@ if(!($db = mysqli_select_db($conexion, $basededatos))){
 	<tr>
 		<td>UID</td>
 		<td>Fecha</td>
+		<td>Aula</td>
 	</tr>
 	<?php
 	$listado = array();
-	$consulta = "SELECT id, fecha FROM salas WHERE fecha BETWEEN '$inicio' AND '$final'";
+	$consulta = "SELECT id, fecha, sala FROM salas WHERE sala = '$NumAula' AND fecha BETWEEN '$inicio' AND '$final'";
 
    if (!($resultado = mysqli_query($conexion, $consulta))){
 	echo "No se ha podido hacer la consulta correctamente <br><br>";
@@ -52,7 +56,7 @@ if(!($db = mysqli_select_db($conexion, $basededatos))){
    echo " que las personas en riesgo son: <br><br>";	
    }
    while($explorar = mysqli_fetch_array($resultado)){
-   	printf("<tr><td>%s</td><td>%s</td></tr>", $explorar["id"], $explorar["fecha"]);
+   	printf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $explorar["id"], $explorar["fecha"], $explorar["sala"]);
    	array_push($listado, $explorar["id"]);
    }
     #mysqli_free_result($resultado);
