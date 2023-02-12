@@ -1,0 +1,32 @@
+*{
+    padding: 0px;
+    top: 0;
+    left: 0;
+    margin: 0px;
+    font-family: Century Gothic;
+
+}
+#Nav{
+    text-align: center; /*Alinear*/
+    color: #fff;
+    font-size: 40px;/*Tamano de letra*/
+    width: 100%;
+    height: 70px;
+    background-color:green ;
+}
+
+#Navh1{
+    color: black;
+    font-family: New Times Roman;
+    padding: 10px;  /*Margen por el interior*/
+    font-size: 20px;/*Tamano de letra*/
+}
+
+form{
+    text-align: center; /*Alinear*/
+    font-family: New Times Roman;
+    font-size: 20px;/*Tamano de letra*/
+    width: 100%;
+    height: 200px;
+    background-color: skyblue;
+}
