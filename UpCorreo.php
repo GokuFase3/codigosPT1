@@ -18,9 +18,11 @@ try {
       $SMTPAuth = true;
       $_SMTPSecure = "starttls";
       $Password = "Lo260772Lo";
-      $emailTo = "saulmagana1998@icloud.com";
-      $Subject = "text";
-      $bodyEmail = "Hola";
+      $emailTo = array();
+      array_push($emailTo, "saulmagana1998@icloud.com");
+      array_push($emailTo, "saimonluaskukie@icloud.com");
+      $Subject = "Test Emails";
+      $bodyEmail = "Correos";
 
       $mail->isSMTP();
       $mail->SMTPDebug = 2;
@@ -32,7 +34,14 @@ try {
       $mail->Password = $Password;
       
       $mail->setFrom($fromemail,$fromname);
-      $mail->addAddress($emailTo);
+      if (is_array($emailTo)){
+          foreach ($emailTo as $key => $value) {
+               $mail->addAddress($value);
+          }
+      }else{
+               $mail->addAddress($emailTo);
+      }
+
 
       $mail->isHTML(true);
       $mail->Subject = $Subject;
