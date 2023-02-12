@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-	<title>Evento</title>
-</head>
-<body>
-    <script>
-         function alerta(){
-             alert("Holaaaaaaaa");
-         }
-    </script>
-    <fieldset>
-    	<legend>Evento en un click para mandar correos</legend>
-    	<input type="button" onclick="alerta()" id="boton" value="aletrta">
-
-    </fieldset>
-
-</body>
-
-</html>
-
 <?php
+
+$ID = $_GET['id'];
+$aula = $_GET['aula'];
+
+echo "El UID registrado es: " .$ID;
+echo "  En el aula: " .$aula;
+
+$usuario = "root";
+$contrasena = "";
+$servidor = "localhost";
+$basededatos = "aulas";
+
+$conexion = mysqli_connect($servidor, $usuario, "") or die ("No se ha podido conectar al servidor de la Base de datos");
+
+$db = mysqli_select_db($conexion, $basededatos) or die ("No se ha podido seleccionar la Base de datos");
+#".$ID."
+$consulta = "INSERT INTO salas (id, sala) VALUES ('$ID', '$aula')";
+
+$resultado = mysqli_query($conexion, $consulta) or die ("No se pudo subir los datos");
 
 ?>
